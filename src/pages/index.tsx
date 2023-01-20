@@ -1,26 +1,31 @@
-import Card from "@/components/elements/Card"
+import Footer from "@/components/elements/Footer"
 import ScrollExpandCard from "@/components/elements/ScrollExpandCard"
 import AboutMe from "@/composites/home/AboutMe"
 import Summary from "@/composites/home/Summary"
-import useIntersectionObserver from "@/hooks/useIntersectionObserver"
 import Head from "next/head"
-import { useEffect, useState, useRef } from "react"
-
-const X_COORDINATE_LEFT = 40
-const X_COORDINATE_CENTER = 310.25
-const X_COORDINATE_RIGHT = 580.5
-
-const THRESHOLD = 10
 
 const X_INTERSECTION_START = 300
+const CONTENT_HEIGHT = 300
 
-const leftContent = <p className="text-2xl font-bold italic">Currently working at:</p>
-const rightContent = (
-  <>
-    <p className="text-4xl font-bold italic">Erajaya</p>
-    <p className="text-lg">September 2022 - Present</p>
-  </>
-)
+const EXPANDABLE_CONTENT = [
+  {
+    left: <p className="text-2xl font-bold italic">Currently working at:</p>,
+    right: (
+      <>
+        <p className="text-4xl font-bold italic">Erajaya</p>
+        <p className="text-lg">September 2022 - Present</p>
+      </>
+    ),
+  },
+  {
+    left: <p className="text-2xl font-bold italic">My motto:</p>,
+    right: (
+      <>
+        <p className="text-4xl font-bold italic">Manners Maketh Man.</p>
+      </>
+    ),
+  },
+]
 
 export default function Home() {
   return (
@@ -41,22 +46,16 @@ export default function Home() {
         <Summary />
         <AboutMe />
         <div className="h-[2000px]">
-          <ScrollExpandCard
-            startCoordinate={X_INTERSECTION_START}
-            leftContent={leftContent}
-            rightContent={rightContent}
-          />
-          <ScrollExpandCard
-            startCoordinate={X_INTERSECTION_START + 300 * 1}
-            leftContent={leftContent}
-            rightContent={rightContent}
-          />
-          <ScrollExpandCard
-            startCoordinate={X_INTERSECTION_START + 300 * 2}
-            leftContent={leftContent}
-            rightContent={rightContent}
-          />
+          {EXPANDABLE_CONTENT.map((content, index) => (
+            <ScrollExpandCard
+              startCoordinate={X_INTERSECTION_START + CONTENT_HEIGHT * index}
+              leftContent={content.left}
+              rightContent={content.right}
+              key={index}
+            />
+          ))}
         </div>
+        <Footer />
       </div>
     </>
   )

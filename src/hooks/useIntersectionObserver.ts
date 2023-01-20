@@ -31,5 +31,5 @@ export default function useIntersectionObserver(ref: any) {
     };
   }, [ref]);
 
-  return [isComponentVisible];
+  return isComponentVisible;
 }

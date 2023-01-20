@@ -1,3 +1,4 @@
+import useScroll from "@/hooks/useScroll"
 import React, { ReactNode, useEffect, useRef, useState } from "react"
 import Card from "../Card"
 
@@ -11,39 +12,20 @@ const ScrollExpandCard = (props: ScrollExpandCardProps) => {
   const { startCoordinate, leftContent, rightContent } = props
   const firstCardRef = useRef(null)
   const containerRef = useRef(null)
+  const scrollPosition = useScroll()
 
-  const [scrollPosition, setScrollPosition] = useState(0)
   const [anchorLeft, setAnchorLeft] = useState(0)
-  const [anchorRight, setAnchorRight] = useState(0)
-  const handleScroll = () => {
-    const position = window.pageYOffset
-    setScrollPosition(position)
-  }
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll, { passive: true })
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll)
-    }
-  }, [])
-
-  useEffect(() => {
-    const height = document.body.offsetHeight
-    const containerWidth = containerRef?.current?.clientWidth
-    const rect = firstCardRef?.current?.getBoundingClientRect()
-    const centerX = rect.left + rect.width / 2
+    // const height = document.body.offsetHeight
+    // const containerWidth = containerRef?.current?.clientWidth
+    // const rect = firstCardRef?.current?.getBoundingClientRect()
     if (scrollPosition > startCoordinate) {
       const operator = scrollPosition - startCoordinate
       const percentageLeft = 50 - operator / 10
-      const percentageRight = 50 + operator / 10
 
       if (percentageLeft >= 0 && percentageLeft <= 50) {
         setAnchorLeft(percentageLeft)
-      }
-
-      if (percentageRight >= 50 && percentageRight <= 100) {
-        setAnchorRight(percentageRight)
       }
     }
   }, [scrollPosition])
@@ -51,7 +33,7 @@ const ScrollExpandCard = (props: ScrollExpandCardProps) => {
   return (
     <div className="grid grid-cols-2 mt-4" ref={containerRef}>
       <div
-        className="w-[calc(100%+100px)] ease-linear"
+        className="w-[calc(100%+100px)] ease-in-out duration-100"
         style={{ transform: `translate(${anchorLeft}%, 0%)` }}
         ref={firstCardRef}
       >
