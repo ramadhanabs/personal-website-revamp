@@ -1,7 +1,11 @@
+import Card from "@/components/elements/Card"
 import Footer from "@/components/elements/Footer"
+import MarqueeText from "@/components/elements/MarqueeText"
 import ScrollExpandCard from "@/components/elements/ScrollExpandCard"
 import AboutMe from "@/composites/home/AboutMe"
+import Contact from "@/composites/home/Contact"
 import Summary from "@/composites/home/Summary"
+import WorkingExperience from "@/composites/home/WorkingExperience"
 import Head from "next/head"
 
 const X_INTERSECTION_START = 300
@@ -36,7 +40,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="min-h-screen bg-black p-10 grid grid-flow-row">
+      <div className="min-h-screen bg-black px-10 ">
         <div className="hidden sm:block absolute top-[24px] left-[24px]">
           <img className="w-32 h-32 animate-spin-slow" src="circular-text.svg" />
         </div>
@@ -45,7 +49,7 @@ export default function Home() {
         </div>
         <Summary />
         <AboutMe />
-        <div className="h-[2000px]">
+        <div className="mb-4">
           {EXPANDABLE_CONTENT.map((content, index) => (
             <ScrollExpandCard
               startCoordinate={X_INTERSECTION_START + CONTENT_HEIGHT * index}
@@ -55,6 +59,8 @@ export default function Home() {
             />
           ))}
         </div>
+        <WorkingExperience />
+        <Contact />
         <Footer />
       </div>
     </>
