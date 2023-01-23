@@ -11,7 +11,7 @@ const AboutMe = () => {
   }, [scrollPosition])
 
   return (
-    <Card className="bg-[#1B1B1F] text-[#D0FF94] mt-4 relative">
+    <Card className="bg-[#1B1B1F] text-[#D0FF94] my-4 relative">
       <div className="hidden sm:block absolute bottom-[24px] right-[24px]">
         <img
           className="w-32 h-32 ease-linear duration-100"

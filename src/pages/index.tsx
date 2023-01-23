@@ -49,7 +49,7 @@ export default function Home() {
         </div>
         <Summary />
         <AboutMe />
-        <div className="mb-4">
+        {/* <div className="mb-4">
           {EXPANDABLE_CONTENT.map((content, index) => (
             <ScrollExpandCard
               startCoordinate={X_INTERSECTION_START + CONTENT_HEIGHT * index}
@@ -58,7 +58,7 @@ export default function Home() {
               key={index}
             />
           ))}
-        </div>
+        </div> */}
         <WorkingExperience />
         <Contact />
         <Footer />
