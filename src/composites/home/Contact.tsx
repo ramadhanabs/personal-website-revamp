@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import Card from "@/components/elements/Card"
 import React from "react"
 import { StackWrapper, StackItem } from "@/components/elements/Stack/Stack"
