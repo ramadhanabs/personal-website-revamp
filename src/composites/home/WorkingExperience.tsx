@@ -72,7 +72,7 @@ const WorkingExperience = () => {
           with a strong grasp of <strong className="font-bold">modern frontend frameworks</strong>.
         </p>
       </div>
-      <div className="mt-16 mb-10" ref={containerRef}>
+      <div className="hidden sm:block mt-16 mb-10" ref={containerRef}>
         <Experiences transformValue={transformValue} experienceList={LIST_EXPERIENCES_1} />
         <Experiences transformValue={transformValue + 124} experienceList={LIST_EXPERIENCES_2} />
       </div>
