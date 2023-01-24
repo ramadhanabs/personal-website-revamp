@@ -62,10 +62,11 @@ const WorkingExperience = () => {
               <BriefcaseIcon className="w-10 h-10" />
             </StackItem>
           </StackWrapper>
-          <p className="gradient-text text-[100px] h-[160px] font-bold tracking-tight">
+          <p className="gradient-text text-[100px] h-[160px] font-bold tracking-tight hidden sm:block">
             Grind - Street Cred
           </p>
         </div>
+        <p className="text-[40px] font-bold tracking-tight leading-none block sm:hidden my-8">Grind - Street Cred</p>
         <p className="text-2xl font-light">
           My wealth of experiences creating visually appealing and user-friendly websites <br />{" "}
           with a strong grasp of <strong className="font-bold">modern frontend frameworks</strong>.

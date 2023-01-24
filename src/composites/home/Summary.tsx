@@ -6,7 +6,7 @@ import { BoltIcon, FingerPrintIcon, PhoneIcon } from "@heroicons/react/24/outlin
 
 const Summary = () => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-auto">
+    <div className="hidden sm:grid grid-cols-1 sm:grid-cols-2 gap-4 mt-auto">
       <Card className="h-auto bg-[#030f23] text-[#139de2]" isWithHover>
         <p className="font-extralight text-2xl tracking-wide">/intro</p>
         <MarqueeText className="text-[100px] h-[160px] font-bold tracking-tight group-hover:opacity-0 ease-in-out duration-300">

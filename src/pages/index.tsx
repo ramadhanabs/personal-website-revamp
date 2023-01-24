@@ -40,7 +40,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="min-h-screen bg-black px-10 ">
+      <div className="min-h-screen bg-black px-4 sm:px-10">
         <div className="hidden sm:block absolute top-[24px] left-[24px]">
           <img className="w-32 h-32 animate-spin-slow" src="circular-text.svg" />
         </div>

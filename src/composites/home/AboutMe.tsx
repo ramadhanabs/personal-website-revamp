@@ -20,10 +20,14 @@ const AboutMe = () => {
         />
       </div>
       <p className="text-lg">/about-me</p>
-      <p className="text-[80px] tracking-tight leading-none mt-10">
+      <p className="text-[80px] tracking-tight leading-none mt-10 hidden sm:block">
         My name is <strong className="gradient-text">Ramadhana Bagus</strong> <br />
-        I am from 🇮🇩 Indonesia. <br />
-        I work with React & Vue ecosystem.
+        I am from 🇮🇩 Indonesia. <br />I work with React & Vue ecosystem.
+      </p>
+      <p className="block sm:hidden text-[40px] tracking-tight leading-none mt-10">
+        My name is Ramadhana Bagus
+        <br />
+        I am from 🇮🇩 Indonesia. <br />I work with React & Vue ecosystem.
       </p>
     </Card>
   )

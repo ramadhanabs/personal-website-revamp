@@ -15,10 +15,13 @@ const Contact = () => {
               <PhoneIcon className="w-10 h-10" />
             </StackItem>
           </StackWrapper>
-          <p className="gradient-text text-[100px] h-[160px] font-bold tracking-tight">
+          <p className="gradient-text text-[100px] h-[160px] font-bold tracking-tight hidden sm:block">
             Reach Me Out
           </p>
         </div>
+        <p className="text-[40px] font-bold tracking-tight leading-none block sm:hidden my-8">
+          Reach Me Out
+        </p>
         <p className="text-2xl font-light">
           Whether you're a fellow developer, a business owner looking to improve your website,{" "}
           <br />
