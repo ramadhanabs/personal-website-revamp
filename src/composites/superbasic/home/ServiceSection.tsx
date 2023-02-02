@@ -78,7 +78,7 @@ const ServiceItem = (props: ServiceItemProps) => {
 const SelectedService = (props: ServiceItemProps) => {
   const { data } = props
   return (
-    <div className="transition-all ease-in-out duration-200">
+    <div className="transition-all ease-in-out duration-200 my-5">
       <div className="flex items-center text-cyan-500">
         {data.icon}
         <p className="text-2xl ml-2 font-bold text-cyan-500">{data.title}</p>
@@ -101,7 +101,7 @@ const ServiceSection = () => {
         <strong className="gradient-text">Tailored services</strong> <br />
         for your unique needs.
       </p>
-      <div className="grid grid-cols-2 text-white gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 text-white gap-2 md:gap-6">
         <div className="flex flex-col gap-4">
           {DATA.map((item) => (
             <ServiceItem

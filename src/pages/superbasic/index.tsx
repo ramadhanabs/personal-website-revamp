@@ -25,7 +25,7 @@ const Superbasic = () => {
         <section className="pt-[150px] pb-[150px]">
           <div className="h-[650px] flex items-center">
             <div className="flex flex-col gap-8 w-[80%]">
-              <h1 className="text-white text-[100px] leading-none font-bold tracking-tight">
+              <h1 className="text-white text-[40px] md:text-[100px] leading-none font-bold tracking-tight">
                 Code that <strong className="gradient-text">grooves</strong>,
                 <br />
                 designs that move.

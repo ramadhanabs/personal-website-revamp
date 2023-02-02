@@ -21,7 +21,7 @@ const Header = () => {
       <Container>
         <div className="flex justify-between w-full">
           <h1 className="text-white text-2xl font-bold">Superbasic.</h1>
-          <div className="flex items-center gap-8">
+          <div className="items-center gap-8 hidden md:flex">
             <MenuButton href="/superbasic" label="Service" />
             <MenuButton href="/superbasic" label="Our Works" />
             <MenuButton href="/superbasic" label="Why Us" />

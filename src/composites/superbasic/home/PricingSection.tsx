@@ -112,7 +112,7 @@ const PricingSection = () => {
         Lets make it <strong className="gradient-text">Groovy!</strong>
       </p>
 
-      <div className="grid grid-cols-3 gap-3 items-center">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 items-center">
         {DATA.map((item) => (
           <div
             className={twMerge(
