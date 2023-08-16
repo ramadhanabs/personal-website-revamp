@@ -62,3 +62,16 @@ html {
     }
   }
 }
+
+/* the slides */
+.slick-slider {
+    overflow: hidden;
+}
+/* the parent */
+.slick-list {
+    margin: 0 -9px;
+}
+/* item */  
+.slick-slide{
+    padding: 0 9px;
+}

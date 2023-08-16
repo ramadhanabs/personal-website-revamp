@@ -78,7 +78,7 @@ const ServiceItem = (props: ServiceItemProps) => {
 const SelectedService = (props: ServiceItemProps) => {
   const { data } = props
   return (
-    <div className="transition-all ease-in-out duration-200 my-5">
+    <div className="transition-all ease-in-out duration-200 my-5 md:my-0">
       <div className="flex items-center text-cyan-500">
         {data.icon}
         <p className="text-2xl ml-2 font-bold text-cyan-500">{data.title}</p>

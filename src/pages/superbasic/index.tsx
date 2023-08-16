@@ -1,6 +1,7 @@
 import Button from "@/components/elements/Button"
 import Container from "@/components/elements/Container"
-import Header from "@/composites/layouts/Header"
+import Footer from "@/composites/superbasic/layouts/Footer"
+import Header from "@/composites/superbasic/layouts/Header"
 import PricingSection from "@/composites/superbasic/home/PricingSection"
 import ServiceSection from "@/composites/superbasic/home/ServiceSection"
 import {
@@ -45,6 +46,7 @@ const Superbasic = () => {
         <ServiceSection />
         <PricingSection />
       </Container>
+      <Footer />
     </>
   )
 }
