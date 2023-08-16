@@ -17,7 +17,7 @@ const Superbasic = () => {
           <div className="h-[650px] flex items-center">
             <div className="flex flex-col gap-8">
               <h1 className="text-white text-[40px] md:text-[100px] leading-none font-bold tracking-tight">
-                It's me, <strong className="gradient-text">Bagus</strong>.
+                Call me <strong className="gradient-text">Bagus</strong>.
                 <br />A Website Developer.
               </h1>
               <p className="text-white text-lg opacity-80">
