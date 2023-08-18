@@ -8,24 +8,24 @@ const projects = [
     name: "Eraspace",
     type: "E-Commerce",
     description: "Eraspace is a biggest lifestyle and gadget retailer website in Indonesia.",
-    image_url: "/images/eraspace.png",
+    image_url: "/images/eraspace.webp",
     link: "https://eraspace.com/",
-    stack: ["NextJS", "TailwindCSS", "React Query"],
+    stack: ["NextJS", "TailwindCSS", "Typescript"],
   },
   {
     name: "iBox",
     type: "E-Commerce",
     description: "iBox is an official reseller of Apple Premium Product in Indonesia.",
-    image_url: "/images/ibox.png",
+    image_url: "/images/ibox.webp",
     link: "https://ibox.co.id/",
-    stack: ["NextJS", "TailwindCSS", "React Query"],
+    stack: ["NextJS", "TailwindCSS", "Typescript"],
   },
   {
     name: "Antaraloka",
     type: "Company Profile",
     description:
       "Lokantara is a company in the supply sector of industrial goods to meet local and export needs.",
-    image_url: "/images/antaraloka.png",
+    image_url: "/images/antaraloka.webp",
     link: "https://antaraloka.com/",
     stack: ["Wordpress", "Elementor"],
   },
@@ -33,7 +33,7 @@ const projects = [
     name: "Greenlab",
     type: "Company Profile",
     description: "Greenlab is an environmental and industrial hygiene laboratory expert.",
-    image_url: "/images/greenlab.png",
+    image_url: "/images/greenlab.webp",
     link: "https://greenlab.co.id/",
     stack: ["Wordpress", "Elementor"],
   },
@@ -42,7 +42,7 @@ const projects = [
     type: "Company Profile",
     description:
       "Unitest is a testing laboratory that also do inspection and waste management in Indonesia.",
-    image_url: "/images/unitest.png",
+    image_url: "/images/unitest.webp",
     link: "https://new.unitest.co.id/",
     stack: ["Wordpress", "Elementor"],
   },
@@ -50,7 +50,7 @@ const projects = [
     name: "Mekar Abadi Pratama",
     type: "Company Profile",
     description: "Mekar Abadi Pratama is a supplier of medical gases installment and equipment.",
-    image_url: "/images/mekarabadi.png",
+    image_url: "/images/mekarabadi.webp",
     link: "https://mekarabadipratama.co.id/",
     stack: ["Wordpress", "Elementor"],
   },
@@ -105,7 +105,7 @@ const Superbasic = () => {
           </div>
         </section>
 
-        <section id="portfolios">
+        <section className="scroll-mt-10" id="portfolios">
           <div className="flex flex-col gap-8">
             <h3 className="text-white text-2xl leading-none font-bold tracking-tight">
               Portfolios
