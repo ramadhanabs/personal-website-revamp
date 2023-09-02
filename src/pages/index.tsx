@@ -1,7 +1,26 @@
 import Button from "@/components/elements/Button"
 import Container from "@/components/elements/Container"
-import { ArrowRightCircleIcon } from "@heroicons/react/24/solid"
+import { ArrowRightCircleIcon, LinkIcon } from "@heroicons/react/24/solid"
 import Head from "next/head"
+import Image from "next/image"
+import { useEffect } from "react"
+import { supabase } from "@/supabase"
+import Link from "next/link"
+
+const companies = [
+  {
+    name: "Eraspace",
+    image_url: "/images/logo-eraspace.png",
+  },
+  {
+    name: "Teamup",
+    image_url: "/images/logo-teamup.svg",
+  },
+  {
+    name: "Elcreativeon",
+    image_url: "/images/logo-elcreativeon.png",
+  },
+]
 
 const projects = [
   {
@@ -57,6 +76,13 @@ const projects = [
 ]
 
 const Superbasic = () => {
+  const fetchData = async () => {
+    const res = await supabase.from("links").select("*")
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
   return (
     <>
       <Head>
@@ -81,7 +107,7 @@ const Superbasic = () => {
                 time.
                 <br />A frontend developer that also learning about backend.
               </p>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 flex-wrap">
                 <a href="https://www.linkedin.com/in/ramadhanabagus/">
                   <Button>
                     <p>Linkedin</p>
@@ -94,12 +120,21 @@ const Superbasic = () => {
                     <ArrowRightCircleIcon className=" ml-3 w-6 h-6" />
                   </Button>
                 </a>
+                <Link href="/link/create">
+                  <Button>
+                    <p>Link Shortener</p>
+                    <LinkIcon className=" ml-3 w-5 h-5" />
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
 
           <div className="absolute bottom-10 flex justify-center w-full">
-            <a href="#portfolios" className="text-white/70 text-center border border-cyan-500 px-3 py-2 rounded-full text-xs font-semibold hover:bg-cyan-500/50 hover:text-white transition-all duration-300 animate-bounce">
+            <a
+              href="#portfolios"
+              className="text-white/70 text-center border border-cyan-500 px-3 py-2 rounded-full text-xs font-semibold hover:bg-cyan-500/50 hover:text-white transition-all duration-300 animate-bounce"
+            >
               Check my portfolios
             </a>
           </div>
@@ -117,8 +152,13 @@ const Superbasic = () => {
                   className="bg-[#282828] border border-[#4f4f4f] rounded-xl p-4 text-white !flex !flex-col gap-4 hover:border-cyan-500/50 hover:bg-cyan-500/10 duration-300 transition-all"
                   key={item.name}
                 >
-                  <div className="relative">
-                    <img src={item.image_url} alt="antaraloka" className="rounded-lg" />
+                  <div className="relative h-[200px]">
+                    <Image
+                      src={item.image_url}
+                      alt={item.name}
+                      className="rounded-lg object-cover"
+                      fill
+                    />
                   </div>
                   <div>
                     <h3 className="font-semibold text-xl mb-2">{item.name}</h3>

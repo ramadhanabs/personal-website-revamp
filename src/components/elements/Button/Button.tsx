@@ -1,16 +1,20 @@
-import React, { PropsWithChildren } from "react"
+import React, { ButtonHTMLAttributes, PropsWithChildren } from "react"
 import { twMerge } from "tailwind-merge"
+import Spinner from "../Spinner"
 
-interface ButtonProps {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string
   size?: "small" | "normal" | "large"
   isFullWidth?: boolean
-  variant?: "primary" | "secondary"
+  variant?: "primary" | "secondary" | "dark"
+  isLoading?: boolean
+  onClick?: () => void
 }
 
 const VARIANT_STYLE = {
   primary: "bg-cyan-500 hover:shadow-cyan-500/50 text-white",
   secondary: "bg-yellow-500 hover:shadow-yellow-500/50 text-white",
+  dark: "border bg-[#282828] border border-[#4f4f4f] text-white hover:bg-gray-700",
 }
 
 const SIZE_STYLE = {
@@ -26,6 +30,7 @@ const Button = (props: PropsWithChildren<ButtonProps>) => {
     size = "normal",
     isFullWidth = false,
     variant = "primary",
+    isLoading = false,
     ...other
   } = props
   return (
@@ -39,7 +44,14 @@ const Button = (props: PropsWithChildren<ButtonProps>) => {
       )}
       {...other}
     >
-      {children}
+      {isLoading ? (
+        <>
+          <Spinner />
+          <p>Loading...</p>
+        </>
+      ) : (
+        children
+      )}
     </button>
   )
 }
