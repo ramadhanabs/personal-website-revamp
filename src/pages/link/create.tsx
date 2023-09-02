@@ -1,12 +1,14 @@
 import Button from "@/components/elements/Button"
 import Container from "@/components/elements/Container"
 import Head from "next/head"
-import React, { useState, FormEvent } from "react"
+import React, { useState, FormEvent, KeyboardEvent } from "react"
 import { supabase } from "@/supabase"
-import { LinkIcon, ClipboardIcon } from "@heroicons/react/24/outline"
+import { LinkIcon, ClipboardIcon, ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline"
 import { motion } from "framer-motion"
 import { toast } from "react-hot-toast"
 import _ from "underscore"
+import { isValidUrl } from "@/utils/stringUtils"
+import Link from "next/link"
 
 const hostUrl = process.env.NEXT_PUBLIC_HOST_URL
 
@@ -21,6 +23,12 @@ const CreateLink = () => {
 
   const [generatedUrl, setGeneratedUrl] = useState("")
 
+  const handleEnter = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleSubmit()
+    }
+  }
+
   const handleCopy = () => {
     navigator.clipboard.writeText(generatedUrl)
     toast.success(`Copied to clipboard`)
@@ -29,6 +37,11 @@ const CreateLink = () => {
   const handleSubmit = async (event?: FormEvent<HTMLFormElement>) => {
     event?.preventDefault()
     if (!url) return
+
+    if (!isValidUrl(url)) {
+      toast.error("Please enter valid url")
+      return
+    }
 
     const type = isCustomMode ? "custom" : "quick"
     const linkName = isCustomMode ? name : `Quick - ${_.random(1000, 9999)}`
@@ -85,6 +98,7 @@ const CreateLink = () => {
                   placeholder="https://your-long-url.com"
                   value={url}
                   onChange={(e) => setUrl(e.target.value)}
+                  onKeyDown={handleEnter}
                   required
                 />
                 <Button
@@ -125,14 +139,21 @@ const CreateLink = () => {
                       {generatedUrl}
                     </strong>
                   </p>
-                  <Button
-                    className="whitespace-nowrap gap-3"
-                    type="button"
-                    onClick={handleCopy}
-                    variant="dark"
-                  >
-                    <ClipboardIcon className=" w-5 h-5" />
-                  </Button>
+                  <div className="flex items-center gap-2">
+                    <Button
+                      className="whitespace-nowrap gap-3"
+                      type="button"
+                      onClick={handleCopy}
+                      variant="dark"
+                    >
+                      <ClipboardIcon className=" w-5 h-5" />
+                    </Button>
+                    <Link href={generatedUrl} rel="noopener noreferrer" target="_blank">
+                      <Button className="whitespace-nowrap gap-3" type="button" variant="dark">
+                        <ArrowTopRightOnSquareIcon className=" w-5 h-5" />
+                      </Button>
+                    </Link>
+                  </div>
                 </motion.div>
               )}
             </div>
