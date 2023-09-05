@@ -40,13 +40,21 @@ const projects = [
     stack: ["NextJS", "TailwindCSS", "Typescript"],
   },
   {
-    name: "Antaraloka",
-    type: "Company Profile",
+    name: "Personal Link Shortener",
+    type: "Side Project",
     description:
-      "Lokantara is a company in the supply sector of industrial goods to meet local and export needs.",
-    image_url: "/images/antaraloka.webp",
-    link: "https://antaraloka.com/",
-    stack: ["Wordpress", "Elementor"],
+      "I create this link shortener in order to spread awareness to my personal website.",
+    image_url: "/images/link-shortener.webp",
+    link: "https://www.bagus.tech/link/create",
+    stack: ["NextJS", "TailwindCSS", "Typescript", "Supabase"],
+  },
+  {
+    name: "Xendit VA Simulator",
+    type: "Side Project",
+    description: "Payment simulator for VA on staging environment of Eraspace payment gateway.",
+    image_url: "/images/xendit-simulator.webp",
+    link: "https://simulate-xendit-va.vercel.app/",
+    stack: ["NextJS", "ChakraUI", "Typescript"],
   },
   {
     name: "Greenlab",
@@ -63,7 +71,7 @@ const projects = [
       "Unitest is a testing laboratory that also do inspection and waste management in Indonesia.",
     image_url: "/images/unitest.webp",
     link: "https://new.unitest.co.id/",
-    stack: ["Wordpress", "Elementor"],
+    stack: ["Wordpress", "Elementor", "i18n"],
   },
   {
     name: "Mekar Abadi Pratama",
