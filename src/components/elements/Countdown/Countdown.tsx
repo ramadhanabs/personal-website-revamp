@@ -42,7 +42,6 @@ const calculateTimeLeft = (dateTime: Date): TimeLeft | null => {
 };
 
 export default function Countdown(props: CountdownProps) {
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   const { endDateTime, children, finishComponent, onFinish = () => {} } = props;
 
   const [isCountdownFinish, setIsCountdownFinish] = useState(false);
