@@ -102,7 +102,7 @@ const BirthdayGreetings = () => {
       <Container>
         <section className="min-h-screen flex items-center justify-center">
           <div className="flex flex-col gap-8">
-            <div className="flex flex-col gap-4 lg:gap-8">
+            <div className="flex flex-col gap-4 lg:gap-8 pt-[80px]">
               <h1 className="text-white text-[32px] md:text-[64px] leading-none font-bold tracking-tight text-center">
                 <strong className="gradient-text" onClick={clickConfetti}>
                   Make a good wishes
@@ -156,7 +156,7 @@ const BirthdayGreetings = () => {
                 )}
               </Countdown>
 
-              <div className="w-full bg-[#282828] border border-[#4f4f4f] rounded-xl p-4 text-white !flex !flex-col gap-4 hover:border-cyan-500/50 hover:bg-cyan-500/10 duration-300 transition-all h-max">
+              <div className="w-full bg-[#282828] border border-[#4f4f4f] rounded-xl p-4 text-white !flex !flex-col gap-4 hover:border-cyan-500/50 hover:bg-cyan-500/10 duration-300 transition-all h-max mt-10">
                 {isSuccess ? (
                   <div className="flex flex-col items-center gap-4">
                     <h1 className="text-white text-2xl leading-none font-bold tracking-tight text-center">
