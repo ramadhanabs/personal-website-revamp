@@ -31,6 +31,7 @@ const Button = (props: PropsWithChildren<ButtonProps>) => {
     isFullWidth = false,
     variant = "primary",
     isLoading = false,
+    disabled,
     ...other
   } = props
   return (
@@ -40,6 +41,7 @@ const Button = (props: PropsWithChildren<ButtonProps>) => {
         VARIANT_STYLE[variant],
         SIZE_STYLE[size],
         isFullWidth && "w-full justify-center",
+        disabled && "opacity-50 cursor-not-allowed",
         className
       )}
       {...other}
