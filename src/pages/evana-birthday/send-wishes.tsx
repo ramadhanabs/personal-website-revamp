@@ -5,10 +5,10 @@ import { CheckCircleIcon } from "@heroicons/react/24/solid"
 import Head from "next/head"
 import React, { FormEvent, useEffect, useMemo, useState } from "react"
 import { twMerge } from "tailwind-merge"
-import JSConfetti from "js-confetti"
 import Countdown from "@/components/elements/Countdown"
+import useConfetti from "@/hooks/useConfetti"
 
-const GIFT_OPTIONS = [
+export const GIFT_OPTIONS = [
   {
     icon: "🧸",
     label: "Bear",
@@ -32,14 +32,13 @@ const GIFT_OPTIONS = [
 ]
 
 const BirthdayGreetings = () => {
+  const confetti = useConfetti()
   const [name, setName] = useState("")
   const [wishes, setWishes] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
 
   const [selectedGift, setSelectedGift] = useState("")
-
-  const [confetti, setConfetti] = useState<JSConfetti | null>(null)
 
   const isValidated = useMemo(() => {
     if (name && wishes && selectedGift) return true
@@ -83,13 +82,6 @@ const BirthdayGreetings = () => {
       setIsLoading(false)
     }
   }
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const newConfetti = new JSConfetti()
-      setConfetti(newConfetti)
-    }
-  }, [])
 
   return (
     <>

@@ -7,7 +7,7 @@
 html {
   font-family: "Raleway", sans-serif;
   background: black;
-   scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 /* Marquee */
@@ -48,7 +48,7 @@ html {
   background: linear-gradient(90deg, var(--color-one), var(--color-two), var(--color-one)) 0 0 /
     var(--bg-size) 100%;
   -webkit-background-clip: text;
-  color:transparent;
+  color: transparent;
   background-clip: text;
   animation: move-bg 8s infinite linear;
 }
@@ -66,13 +66,21 @@ html {
 
 /* the slides */
 .slick-slider {
-    overflow: hidden;
+  overflow: hidden;
 }
 /* the parent */
 .slick-list {
-    margin: 0 -9px;
+  margin: 0 -9px;
 }
-/* item */  
-.slick-slide{
-    padding: 0 9px;
+/* item */
+.slick-slide {
+  padding: 0 9px;
+}
+
+.fade-left {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.603) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
 }
