@@ -4,8 +4,12 @@ import React, { useEffect, useState } from "react"
 import { supabase } from "@/supabase"
 import { GIFT_OPTIONS } from "./send-wishes"
 import Button from "@/components/elements/Button"
+import DetailWishDialog from "@/composites/evana-birthday/DetailWishDialog"
+import useDisclosure from "@/hooks/useDisclosure"
+import ContentLoader from "@/components/elements/ContentLoader"
+import Link from "next/link"
 
-interface WishesType {
+export interface WishesType {
   id: number
   created_at: string
   name: string
@@ -14,7 +18,18 @@ interface WishesType {
 }
 
 const EvanaBirthday = () => {
+  const { isOpen, onClose, onOpen } = useDisclosure()
   const [wishes, setWishes] = useState<WishesType[]>([])
+  const [selectedWish, setSelectedWish] = useState<WishesType | null>(null)
+  const [summary, setSummary] = useState({
+    bear: 0,
+    rose: 0,
+    chocolate: 0,
+    unicorn: 0,
+  })
+
+  const [isLoading, setIsLoading] = useState(true)
+
   const fetchData = async () => {
     try {
       const { data, error } = await supabase
@@ -23,12 +38,37 @@ const EvanaBirthday = () => {
         .order("created_at", { ascending: false })
         .limit(8)
 
+      const { data: dataSummary, error: errorSummary } = await supabase
+        .from("greetings")
+        .select("gift")
+
+      const countBear = dataSummary?.filter((item) => item.gift === "bear").length
+      const countRose = dataSummary?.filter((item) => item.gift === "rose").length
+      const countChocolate = dataSummary?.filter((item) => item.gift === "chocolate").length
+      const countUnicorn = dataSummary?.filter((item) => item.gift === "unicorn").length
+
       if (!error) {
         setWishes(data as WishesType[])
       }
+
+      if (!errorSummary) {
+        setSummary({
+          bear: countBear ?? 0,
+          rose: countRose ?? 0,
+          chocolate: countChocolate ?? 0,
+          unicorn: countUnicorn ?? 0,
+        })
+      }
     } catch (err) {
       console.error(err)
+    } finally {
+      setIsLoading(false)
     }
+  }
+
+  const handleOpenDialog = (item: WishesType) => {
+    setSelectedWish(item)
+    onOpen()
   }
 
   useEffect(() => {
@@ -43,9 +83,9 @@ const EvanaBirthday = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
-        <section className="min-h-screen flex items-center justify-center">
-          <div className="flex flex-col gap-8">
-            <div className="flex flex-col gap-4 lg:gap-8 pt-[80px]">
+        <section className="min-h-screen flex justify-center">
+          <div className="flex flex-col gap-8 w-full">
+            <div className="flex flex-col gap-4 lg:gap-8 pt-[80px] w-full">
               <h1 className="text-white text-[32px] md:text-[64px] leading-none font-bold tracking-tight text-center">
                 <strong className="gradient-text">Happy Birthday Evana!</strong> 🦄
               </h1>
@@ -56,36 +96,102 @@ const EvanaBirthday = () => {
                 Enjoy your special day to the fullest! 💖🥳 - Ramadhana Bagus S.
               </p>
 
-              <div className="flex flex-col gap-10">
-                <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
-                  {wishes.map((item) => {
-                    const gift = GIFT_OPTIONS.find((gift) => gift.value === item.gift)?.icon
-                    return (
-                      <div
-                        key={item.id}
-                        className="flex shrink-0 flex-col gap-3 bg-cyan-500/10 border border-cyan-500/50 rounded-xl p-4 text-white duration-300 transition-all"
-                      >
-                        <p className="text-2xl">{gift}</p>
-                        <div className="flex gap-2">
-                          <div className="flex flex-col gap-2">
-                            <p className="font-semibold">{item.name}</p>
-                            <p className="line-clamp-3">{item.wishes}</p>
-                          </div>
-                        </div>
-                        <Button isFullWidth className="mt-auto">
-                          See Details
-                        </Button>
-                      </div>
-                    )
-                  })}
-                </div>
+              {/* Summary Gift Section */}
+              <div className="flex flex-col gap-2 pt-[100px] items-center text-center">
+                <h1 className="text-white text-[32px] leading-none font-bold tracking-tight">
+                  <strong className="gradient-text">Gift</strong> from your friends
+                </h1>
+                <p className="text-white opacity-70 text-lg mb-4 text-center">
+                  Here is the summary of what your friends gave to you!
+                </p>
 
-                <Button className="mx-auto">See More Wishes</Button>
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 w-full lg:w-[70%]">
+                  <div className="flex items-center justify-between gap-3 bg-cyan-500/10 border border-cyan-500/50 rounded-xl p-4 text-white duration-300 transition-all">
+                    <p className="text-[40px]">🧸</p>
+                    <p className="text-[40px]">{summary.bear}</p>
+                  </div>
+                  <div className="flex items-center justify-between gap-3 bg-cyan-500/10 border border-cyan-500/50 rounded-xl p-4 text-white duration-300 transition-all">
+                    <p className="text-[40px]">🌹</p>
+                    <p className="text-[40px]">{summary.rose}</p>
+                  </div>
+                  <div className="flex items-center justify-between gap-3 bg-cyan-500/10 border border-cyan-500/50 rounded-xl p-4 text-white duration-300 transition-all">
+                    <p className="text-[40px]">🍫</p>
+                    <p className="text-[40px]">{summary.chocolate}</p>
+                  </div>
+                  <div className="flex items-center justify-between gap-3 bg-cyan-500/10 border border-cyan-500/50 rounded-xl p-4 text-white duration-300 transition-all">
+                    <p className="text-[40px]">🦄</p>
+                    <p className="text-[40px]">{summary.unicorn}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Wishes Section */}
+              <div className="flex flex-col gap-2 py-[100px] items-center">
+                <h1 className="text-white text-[32px] leading-none font-bold tracking-tight">
+                  <strong className="gradient-text">Wishes</strong> from your friends
+                </h1>
+                <p className="text-white opacity-70 text-lg mb-4 text-center">
+                  I gathered many wishes from your friends through form. Here is some wishes from
+                  them.
+                </p>
+                {isLoading ? (
+                  <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 w-full">
+                    {Array.from(Array(4)).map((_) => {
+                      return (
+                        <div
+                          key={_}
+                          className="flex shrink-0 flex-col gap-3 bg-cyan-500/10 border border-cyan-500/50 rounded-xl p-4 text-white duration-300 transition-all"
+                        >
+                          <ContentLoader height={10} isRounded width="30%" />
+                          <ContentLoader height={10} isRounded width="100%" />
+                          <ContentLoader height={10} isRounded width="100%" />
+                          <ContentLoader height={10} isRounded width="70%" />
+                          <ContentLoader height={30} isRounded width="100%" className="mt-3" />
+                        </div>
+                      )
+                    })}
+                  </div>
+                ) : (
+                  <div className="flex flex-col gap-10">
+                    <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
+                      {wishes.map((item) => {
+                        const gift = GIFT_OPTIONS.find((gift) => gift.value === item.gift)?.icon
+                        return (
+                          <div
+                            key={item.id}
+                            className="flex shrink-0 flex-col gap-3 bg-cyan-500/10 border border-cyan-500/50 rounded-xl p-4 text-white duration-300 transition-all"
+                          >
+                            <p className="text-2xl">{gift}</p>
+                            <div className="flex gap-2">
+                              <div className="flex flex-col gap-2">
+                                <p className="font-semibold">{item.name}</p>
+                                <p className="line-clamp-3">{item.wishes}</p>
+                              </div>
+                            </div>
+                            <Button
+                              isFullWidth
+                              className="mt-auto"
+                              onClick={() => handleOpenDialog(item)}
+                            >
+                              See Details
+                            </Button>
+                          </div>
+                        )
+                      })}
+                    </div>
+
+                    <Link href="/evana-birthday/wishes">
+                      <Button className="mx-auto">See More Wishes</Button>
+                    </Link>
+                  </div>
+                )}
               </div>
             </div>
           </div>
         </section>
       </Container>
+
+      <DetailWishDialog data={selectedWish} isOpen={isOpen} onClose={onClose} />
     </>
   )
 }
