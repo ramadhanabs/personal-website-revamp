@@ -8,6 +8,8 @@ import DetailWishDialog from "@/composites/evana-birthday/DetailWishDialog"
 import useDisclosure from "@/hooks/useDisclosure"
 import ContentLoader from "@/components/elements/ContentLoader"
 import Link from "next/link"
+import Slider from "react-slick"
+import { BANNER_EVANA } from "@/constants"
 
 export interface WishesType {
   id: number
@@ -15,6 +17,15 @@ export interface WishesType {
   name: string
   wishes: string
   gift: string
+}
+
+const settings = {
+  autoplay: true,
+  autoplaySpeed: 3000,
+  infinite: true,
+  speed: 800,
+  slidesToShow: 1,
+  slidesToScroll: 1,
 }
 
 const EvanaBirthday = () => {
@@ -86,18 +97,79 @@ const EvanaBirthday = () => {
         <section className="min-h-screen flex justify-center">
           <div className="flex flex-col gap-8 w-full">
             <div className="flex flex-col gap-4 lg:gap-8 pt-[80px] w-full">
-              <h1 className="text-white text-[32px] md:text-[64px] leading-none font-bold tracking-tight text-center">
-                <strong className="gradient-text">Happy Birthday Evana!</strong> 🦄
-              </h1>
-              <p className="text-white text-lg opacity-70 text-center">
-                You light up my world in every way possible. Here is to another year of love,
-                laughter, and unforgettable moments together.
-                <br></br>
-                Enjoy your special day to the fullest! 💖🥳 - Ramadhana Bagus S.
-              </p>
+              <Slider {...settings}>
+                {BANNER_EVANA.map((item) => (
+                  <div className="h-[600px] lg:h-[500px] w-full relative" key={item.image}>
+                    <img src={item.image} className="w-full h-full object-cover rounded-xl" />
+                    <div className="w-full h-full absolute top-0 right-0 bg-black/60">
+                      <div className="flex flex-col w-full h-full justify-between lg:justify-end gap-4">
+                        <div className="lg:hidden p-2 w-full rounded-t-xl bg-gradient-to-r from-blue-500/50 to-emerald-500/50">
+                          <p className="text-white font-semibold text-center">
+                            Happy Birthday My Lovely Queen!
+                          </p>
+                        </div>
+                        <div className="flex flex-col gap-4 p-6">
+                          <h1 className="text-white text-2xl md:text-[64px] leading-none font-bold tracking-tight lg:w-[60%]">
+                            <strong className="gradient-text">{item.title}</strong>
+                          </h1>
+                          <p className="text-white text-sm lg:text-lg">{item.description}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </Slider>
+
+              <div
+                className="flex flex-col gap-2 pt-12 items-center text-center"
+                data-aos="fade-up"
+              >
+                <h1 className="text-white text-[32px] leading-none font-bold tracking-tight">
+                  <strong className="gradient-text">Song</strong> for you!
+                </h1>
+                <p className="text-white opacity-70 text-lg mb-4 text-center">
+                  3 songs from me that represent you.
+                </p>
+
+                <div
+                  className="grid grid-cols-1 lg:grid-cols-3 gap-4 w-full lg:w-[70%]"
+                  data-aos="fade-up"
+                >
+                  <iframe
+                    className="rounded-lg"
+                    src="https://open.spotify.com/embed/track/7ucwhjWSGTEh5e18h6WFER?utm_source=generator&theme=0"
+                    width="100%"
+                    height="152"
+                    allowFullScreen
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy"
+                  ></iframe>
+                  <iframe
+                    className="rounded-lg"
+                    src="https://open.spotify.com/embed/track/4yNk9iz9WVJikRFle3XEvn?utm_source=generator&theme=0"
+                    width="100%"
+                    height="152"
+                    allowFullScreen
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy"
+                  ></iframe>
+                  <iframe
+                    className="rounded-lg"
+                    src="https://open.spotify.com/embed/track/5uCax9HTNlzGybIStD3vDh?utm_source=generator&theme=0"
+                    width="100%"
+                    height="152"
+                    allowFullScreen
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy"
+                  ></iframe>
+                </div>
+              </div>
 
               {/* Summary Gift Section */}
-              <div className="flex flex-col gap-2 pt-[100px] items-center text-center">
+              <div
+                className="flex flex-col gap-2 pt-[100px] items-center text-center"
+                data-aos="fade-up"
+              >
                 <h1 className="text-white text-[32px] leading-none font-bold tracking-tight">
                   <strong className="gradient-text">Gift</strong> from your friends
                 </h1>
@@ -126,7 +198,7 @@ const EvanaBirthday = () => {
               </div>
 
               {/* Wishes Section */}
-              <div className="flex flex-col gap-2 py-[100px] items-center">
+              <div className="flex flex-col gap-2 py-[100px] items-center" data-aos="fade-up">
                 <h1 className="text-white text-[32px] leading-none font-bold tracking-tight">
                   <strong className="gradient-text">Wishes</strong> from your friends
                 </h1>
@@ -160,6 +232,7 @@ const EvanaBirthday = () => {
                           <div
                             key={item.id}
                             className="flex shrink-0 flex-col gap-3 bg-cyan-500/10 border border-cyan-500/50 rounded-xl p-4 text-white duration-300 transition-all"
+                            data-aos="flip-left"
                           >
                             <p className="text-2xl">{gift}</p>
                             <div className="flex gap-2">

@@ -54,10 +54,13 @@ const WishesList = () => {
             <div className="flex flex-col gap-4 lg:gap-8 w-full">
               {/* Wishes Section */}
               <div className="flex flex-col gap-2 py-[100px] items-center">
-                <h1 className="text-white text-lg lg:text-[48px] leading-none font-bold tracking-tight">
+                <h1
+                  className="text-white text-lg lg:text-[48px] leading-none font-bold tracking-tight"
+                  data-aos="fade-up"
+                >
                   <strong className="gradient-text">Wishes</strong> from your friends
                 </h1>
-                <p className="text-white opacity-70 text-lg mb-4 text-center">
+                <p className="text-white opacity-70 text-lg mb-4 text-center" data-aos="fade-up">
                   I gathered many wishes from your friends through form. Here is some wishes from
                   them.
                 </p>
@@ -86,6 +89,7 @@ const WishesList = () => {
                         return (
                           <div
                             key={item.id}
+                            data-aos="flip-left"
                             className="flex shrink-0 flex-col gap-3 bg-cyan-500/10 border border-cyan-500/50 rounded-xl p-4 text-white duration-300 transition-all"
                           >
                             <p className="text-2xl">{gift}</p>
@@ -108,6 +112,10 @@ const WishesList = () => {
                     </div>
                   </div>
                 )}
+
+                <Link href="/evana-birthday" className="mt-20">
+                  <Button className="mx-auto">Back to Main Page</Button>
+                </Link>
               </div>
             </div>
           </div>

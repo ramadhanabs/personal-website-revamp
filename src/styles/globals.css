@@ -53,6 +53,14 @@ html {
   animation: move-bg 8s infinite linear;
 }
 
+.bg-gradient-custom {
+  --color-one: #13e2ac;
+  --color-two: #139de2;
+  background: linear-gradient(90deg, var(--color-one), var(--color-two), var(--color-one)) 0 0 /
+    var(--bg-size) 100%;
+  animation: move-bg 8s infinite linear;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .gradient-text {
     animation: move-bg 8s linear infinite;
@@ -78,9 +86,5 @@ html {
 }
 
 .fade-left {
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.603) 0%,
-    rgba(0, 0, 0, 0) 100%
-  );
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.603) 0%, rgba(0, 0, 0, 0) 100%);
 }

@@ -55,15 +55,18 @@ const EvanaBirthdayAuth = () => {
         <section className="min-h-screen flex items-center justify-center">
           <div className="flex flex-col gap-8">
             <div className="flex flex-col gap-4 lg:gap-8 pt-[80px]">
-              <h1 className="text-white text-[32px] md:text-[64px] leading-none font-bold tracking-tight text-center">
+              <h1
+                className="text-white text-[32px] md:text-[64px] leading-none font-bold tracking-tight text-center"
+                data-aos="fade-up"
+              >
                 <strong className="gradient-text">Hi, Evana Stevani!</strong> <br></br>
               </h1>
-              <p className="text-white text-center">
+              <p className="text-white text-center" data-aos="fade-up">
                 You can open to this on your special date, be patient for something that i already
                 prepared for you 💖 <br></br>- Your love, Bagus.
               </p>
 
-              <Countdown endDateTime={endDate}>
+              <Countdown endDateTime={endDate} data-aos="fade-up">
                 {(timeLeft) => (
                   <div className="flex items-center justify-center gap-3 lg:gap-6">
                     <div className="flex flex-col items-center gap-2">
@@ -103,7 +106,10 @@ const EvanaBirthdayAuth = () => {
                 )}
               </Countdown>
 
-              <div className="w-full bg-[#282828] border border-[#4f4f4f] rounded-xl p-4 text-white !flex !flex-col gap-4 hover:border-cyan-500/50 hover:bg-cyan-500/10 duration-300 transition-all h-max mt-10">
+              <div
+                className="w-full bg-[#282828] border border-[#4f4f4f] rounded-xl p-4 text-white !flex !flex-col gap-4 hover:border-cyan-500/50 hover:bg-cyan-500/10 duration-300 transition-all h-max mt-10"
+                data-aos="fade-up"
+              >
                 <div>
                   <label
                     htmlFor="passcode"
